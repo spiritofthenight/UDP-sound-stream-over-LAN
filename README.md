@@ -10,3 +10,6 @@ This project demonstrates how UDP sockets work in practice.
 **Important notes:**
 - Modify the IP and PORT addresses in `UDP_server.py` and `UDP_client.py` to match your devices' actual IP/PORT numbers.
 - This tool is for educational purposes only.
+
+if you want a simple and clean GUI version of this app you can check my other repo :
+"https://github.com/spiritofthenight/UDP-sound-stream-over-LAN-GUI/"
