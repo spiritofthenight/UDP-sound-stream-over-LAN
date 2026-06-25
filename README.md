@@ -25,4 +25,5 @@ This project demonstrates how UDP sockets work in practice.
 - This tool is for educational purposes only. Don't use it on other people's PCs without consent.
 
 If you want a simple and clean GUI version of this app, check my other repo:
+
 "https://github.com/spiritofthenight/UDP-sound-stream-over-LAN-GUI/"
