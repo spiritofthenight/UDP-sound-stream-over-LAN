@@ -15,6 +15,8 @@ PORT = 5000 # (be sure to check your firewall since firewalls may block ports fo
 
 user_key = "my user key" # enter your encryption key here
 
+fernet = Fernet(kdf_key(user_key))
+
 samplerate = 48000
 
 UDP_socket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
@@ -47,7 +49,6 @@ def main():
     while True:
         try:
             samplerate = 48000
-            fernet = Fernet(kdf_key(user_key))
 
             data, addr = UDP_socket.recvfrom(65507)
 

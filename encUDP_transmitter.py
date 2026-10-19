@@ -28,6 +28,9 @@ def main():
     
     samplerate = 48000
 
+    user_key = "my user key" # encryption key , replace this with your own encryption key
+    fernet = Fernet(kdf_key(user_key))
+
     speaker = soundcard.default_speaker()
     loopback = soundcard.get_microphone(id=speaker.id, include_loopback=True)
 
@@ -36,10 +39,12 @@ def main():
     #count_down = 600
 
     with loopback.recorder(samplerate=samplerate) as mic:
-        while True:
-            audio = mic.record(numframes=1024)
+
             user_key = "my user key" # encryption key , replace this with your own encryption key
             fernet = Fernet(kdf_key(user_key))
+
+        while True:
+            audio = mic.record(numframes=1024)
 
             mono = audio.mean(axis=1)
             pcm16 =(mono * 32767).astype(np.int16)
