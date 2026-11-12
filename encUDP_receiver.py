@@ -8,14 +8,12 @@ import base64, hashlib
 
 # github : https://github.com/spiritofthenight
 
-IP = "192.168.1.100" # replace it with your own device's IP
+IP = "192.168.1.103" # replace it with your own device's IP
 
 # leave the below port number as it is or replace it with your desired port number 
-PORT = 5000 # (be sure to check your firewall since firewalls may block ports for incoming UDP packets !) 
+PORT = 5003 # (be sure to check your firewall since firewalls may block ports for incoming UDP packets !) 
 
 user_key = "my user key" # enter your encryption key here
-
-fernet = Fernet(kdf_key(user_key))
 
 samplerate = 48000
 
@@ -40,12 +38,14 @@ def kdf_key(user_key: str) -> bytes:
 
 print("Reciever started, waiting for audio...")
 
-# *** UNcomment next lines I marked for you if you want log output ; I commented them out for better performance and better latancy ***
+# *** UNcomment next lines I marked if you want log output ; I commented them out for better runtime performance and better latancy ***
+    # if you wish to enable logging, make sure you put numframes=1024 for better quality! <---
 
 
 def main():
     #count_down = 200                                                                                                                                   # * Uncomment
     print("\napp is running on ", IP, ":", PORT, "...\n")
+    fernet = Fernet(kdf_key(user_key))
     while True:
         try:
             samplerate = 48000
