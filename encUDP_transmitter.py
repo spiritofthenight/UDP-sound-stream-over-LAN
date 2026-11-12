@@ -28,23 +28,24 @@ def main():
     
     samplerate = 48000
 
-    user_key = "my user key" # encryption key , replace this with your own encryption key
+    user_key = "my user key" # encryption key , ---> ""**~~ REPLACE THIS with your own encryption key ~~**"" <---
     fernet = Fernet(kdf_key(user_key))
 
     speaker = soundcard.default_speaker()
     loopback = soundcard.get_microphone(id=speaker.id, include_loopback=True)
 
 # *** UNcomment next lines I marked if you want log output ; I commented them out for better runtime performance and better latancy ***
+    # if you wish to enable logging, make sure you put numframes=1024 for better quality! <---
 
     #count_down = 600
 
     with loopback.recorder(samplerate=samplerate) as mic:
 
-            user_key = "my user key" # encryption key , replace this with your own encryption key
-            fernet = Fernet(kdf_key(user_key))
+        user_key = "my user key" # encryption key , replace this with your own encryption key
+        fernet = Fernet(kdf_key(user_key))
 
         while True:
-            audio = mic.record(numframes=1024)
+            audio = mic.record(numframes=256)
 
             mono = audio.mean(axis=1)
             pcm16 =(mono * 32767).astype(np.int16)
@@ -53,7 +54,7 @@ def main():
             packet = fernet.encrypt(token)     # encrypt bytes (token)
 
             #print("audio type is: ", type(audio), "\npacket is :", type(packet), "\n", audio, "\n\npacket: ", packet)          # * Uncomment
-            UDP_socekt.sendto(packet, ("192.168.1.100", 5000)) # replace it with the IP/PORT number of your destination device  # * Uncomment
+            UDP_socekt.sendto(packet, ("192.168.1.1003", 5003)) # replace it with the IP/PORT number of your destination device  # * Uncomment
             #count_down -= 1                                                                                                    # * Uncomment
             #if count_down <= 0:                                                                                                # * Uncomment
             #    clear()                                                                                                        # * Uncomment
