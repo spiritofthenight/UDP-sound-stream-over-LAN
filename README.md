@@ -23,6 +23,7 @@ This project demonstrates how UDP sockets work in practice.
 - Modify the IP and PORT addresses in `UDP_transmitter.py` and `UDP_receiver.py` to match your devices' actual IP/PORT numbers.
 - Modify the IP, PORT address, and `user_key` (encryption key) in `encUDP_transmitter.py` and `encUDP_receiver.py` to match your devices' actual IP/PORT numbers.
 - This tool is for educational purposes only. Don't use it on other people's PCs without consent.
+- if you want log output, uncomment the lines I source code and make sure you set audio = mic.record(numframes=1024) in your transmitter for better audio quality
 
 If you want a simple and clean GUI version of this app, check my other repo:
 
